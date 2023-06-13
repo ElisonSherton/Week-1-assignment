@@ -7,7 +7,25 @@
 */
 
 function isPalindrome(str) {
-  return true;
+  reverse_string = ""
+
+  // Remove punctuation from the string
+  var punctuationPattern = /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g;
+  str = str.replace(punctuationPattern, '');
+
+  // Remove spaces from the string
+  str = str.replace(/\s/g, '');
+  
+  // Reverse the string
+  for (var x = str.length - 1; x >= 0; x--){
+    reverse_string += str[x];
+  }
+
+  // Check if the reversed string and the original string are the same
+  if(str.toLowerCase() === reverse_string.toLowerCase()){
+    return true;
+  }
+  return false;
 }
 
 module.exports = isPalindrome;

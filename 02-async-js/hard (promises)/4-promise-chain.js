@@ -6,17 +6,39 @@
  */
 
 function waitOneSecond() {
-
-}
+    const pm1 = new Promise(function (resolve, reject) {
+        setTimeout(resolve, 1000);
+    });
+    return pm1;
+};
 
 function waitTwoSecond() {
-
-}
+    const pm2 = new Promise(function (resolve, reject) {
+        setTimeout(resolve, 2000);
+    });
+    return pm2;
+};
 
 function waitThreeSecond() {
-
-}
+    const pm3 = new Promise(function (resolve, reject) {
+        setTimeout(resolve, 3000);
+    });
+    return pm3;
+};
 
 function calculateTime() {
 
-}
+    const start = new Date();
+
+    waitOneSecond()
+    .then(function(){return waitTwoSecond();})
+    .then(function(){return waitThreeSecond();})
+    .then(function(){
+        const end = new Date();
+        console.log(`Time taken: ${(end - start) / 1000}`)
+    });
+};
+
+calculateTime();
+
+// It took a total of 6.00 seconds in order to run this program

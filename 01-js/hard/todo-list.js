@@ -12,6 +12,44 @@
 */
 
 class Todo {
+  constructor(){
+    this.todos = [];
+  }
+
+  add(todo){
+    this.todos.push(todo);
+  }
+
+  remove(indexOfTodo){
+    if (indexOfTodo < this.todos.length){
+      const p1 = this.todos.slice(0, indexOfTodo);
+      const p2 = this.todos.slice(indexOfTodo + 1, );
+      this.todos = [].concat(p1).concat(p2);
+    }
+  }
+
+  update(index, updatedTodo){
+    if (index < this.todos.length){
+      this.todos[index] = updatedTodo;
+    };
+  }
+
+  getAll(){
+    return this.todos;
+  }
+
+  get(indexOfTodo){
+    if (indexOfTodo < this.todos.length){
+      return this.todos[indexOfTodo];
+    }
+    else {
+      return null;
+    }
+  }
+
+  clear(){
+    this.todos = [];
+  }
 
 }
 

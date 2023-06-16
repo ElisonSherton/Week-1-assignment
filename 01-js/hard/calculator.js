@@ -17,6 +17,93 @@
   - `npm run test-calculator`
 */
 
-class Calculator {}
+class Calculator {
+  constructor(){
+    this.result = 0;
+  }
+
+  add(input){
+    if (typeof input === "number") {
+      this.result += input;
+    }
+  };
+
+  subtract(input){
+    if (typeof input === "number") {
+      this.result -= input;
+    }
+  };
+
+  multiply(input){
+    if (typeof input === "number") {
+      this.result *= input;
+    }
+  };
+
+  divide(input){
+    if (input === 0) {
+      throw Error();
+    }
+
+    if (typeof input === "number" && input !== 0) {
+      this.result /= input;
+    }
+  };
+
+  clear(){
+    this.result = 0;
+  }
+
+  getResult(){
+    return this.result;
+  }
+
+  remove_extra_spaces(expr){
+    var bits = expr.split(" ")
+    var bits_without_spaces = []
+    for(let x = 0; x < bits.length; x ++){
+      if (bits[x] !== "") {
+        bits_without_spaces.push(bits[x])
+      }
+    }
+    return bits_without_spaces.join(" ");
+  };
+
+  check_string_validity(expr) {
+    const allowed_chars = new Set("0123456789(). +-/*".split(""));
+    var elems = expr.split("");
+    // console.log("Allowed Characters", allowed_chars);
+    // console.log("Elements in the split expression", elems);
+    for (let x = 0; x < elems.length; x++){
+      if (!allowed_chars.has(elems[x])){
+        console.log(elems[x]);
+        return false;
+      }
+    }
+    return true;
+  }
+
+  calculate(expr){
+    // console.log("Before Removing spaces", expr)
+    expr = this.remove_extra_spaces(expr);
+    // console.log("After Removing spaces", expr);
+    if (this.check_string_validity(expr)){
+      try{
+        this.result = eval(expr);
+        if (this.result == "Infinity"){
+          throw Error();
+        }
+        console.log(expr, this.result);
+      }
+      catch(err){
+        throw Error();
+      }
+    }
+    else {
+      throw Error();
+    }
+    
+  }
+}
 
 module.exports = Calculator;
